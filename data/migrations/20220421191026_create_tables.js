@@ -5,18 +5,6 @@ exports.up = function(knex) {
             .unique()
             .notNullable();
     })
-    .createTable('steps', tbl => {
-        tbl.increments('step_id');
-        tbl.integer('step_number')
-            .notNullable();
-        tbl.text('instructions')
-            .notNullable();
-        tbl.integer('recipe_id')
-            .unsigned()
-            .notNullable()
-            .references('recipe_id')
-            .inTable('recipes')
-    })
     .createTable('quantity', tbl => {
         tbl.increments('quantity_id');
         tbl.integer('quantity')
@@ -32,6 +20,23 @@ exports.up = function(knex) {
             .notNullable()
             .references('quantity_id')
             .inTable('quantity')
+    })
+    .createTable('steps', tbl => {
+        tbl.increments('step_id');
+        tbl.integer('step_number')
+            .notNullable();
+        tbl.text('instructions')
+            .notNullable();
+        tbl.integer('recipe_id')
+            .unsigned()
+            .notNullable()
+            .references('recipe_id')
+            .inTable('recipes')
+        tbl.integer('ingredient_id')
+            .unsigned()
+            .notNullable()
+            .references('ingredient_id')
+            .inTable('ingredients')
     })
 };
 
