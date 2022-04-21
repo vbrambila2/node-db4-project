@@ -14,7 +14,6 @@ router.get('/recipes', (req, res) => {
 })
 
 router.get('/recipes/:recipe_id', (req, res) => {
-    console.log(req.params.recipe_id);
     Model.getRecipeById(req.params.recipe_id)
         .then(rec => {
             res.json(rec)
